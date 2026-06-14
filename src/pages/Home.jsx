@@ -63,10 +63,10 @@ function Home() {
     <div className="space-y-16 pb-12">
       <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 rounded-3xl overflow-hidden shadow-2xl mt-4">
         <div className="absolute top-[-20%] right-[-10%] w-96 h-96 bg-primary opacity-20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-[-20%] left-[-10%] w-96 h-96 bg-secondary opacity-10 rounded-full blur-3xl"></div>      
+        <div className="absolute bottom-[-20%] left-[-10%] w-96 h-96 bg-secondary opacity-10 rounded-full blur-3xl"></div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 md:p-16 items-center relative z-10">
           <div className="lg:col-span-7 space-y-6 text-left flex flex-col justify-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -74,8 +74,8 @@ function Home() {
             >
               <Sparkles size={14} /> Next-Gen Technology
             </motion.div>
-            
-            <motion.h1 
+
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -86,38 +86,38 @@ function Home() {
                 Premium Tech.
               </span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg text-slate-300 max-w-xl leading-relaxed"
             >
-              Upgrade your setup with our handpicked collection of high-performance laptops, smartphones, sound systems, and smart accessories. Fast delivery and stellar support included.
+              Upgrade your setup with our handpicked collection of high-performance laptops, smartphones, sound systems, and smart accessories. Fast delivery and seller support included.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4 pt-2"
             >
-              <Link 
-                to="/products" 
+              <Link
+                to="/products"
                 className="group flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-orange-600 transition shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 duration-200"
               >
                 Shop Collection
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <a 
-                href="#categories" 
+              <a
+                href="#categories"
                 className="flex items-center justify-center bg-slate-800/80 text-white border border-slate-700 px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-700 transition hover:-translate-y-0.5 duration-200"
               >
                 Browse Categories
               </a>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -134,7 +134,7 @@ function Home() {
             </motion.div>
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -142,15 +142,15 @@ function Home() {
           >
             <div className="relative group w-full max-w-md">
               <div className="absolute -inset-1.5 bg-gradient-to-r from-primary to-orange-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-              
-              <motion.div 
+
+              <motion.div
                 animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
                 className="relative bg-slate-900 border border-slate-700/50 rounded-2xl overflow-hidden shadow-2xl"
               >
-                <img 
-                  src={sony} 
-                  alt="Premium Tech Gear" 
+                <img
+                  src={sony}
+                  alt="Premium Tech Gear"
                   className="w-full h-80 object-cover opacity-90 group-hover:scale-105 transition duration-700"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950 to-transparent p-6 pt-20">
@@ -169,8 +169,8 @@ function Home() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {trustBadges.map((badge, idx) => (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xs flex items-center gap-4 hover:shadow-md hover:-translate-y-1 transition duration-300"
           >
             <div className="p-3 bg-primary/10 rounded-xl">
@@ -189,20 +189,20 @@ function Home() {
           <h2 className="text-3xl md:text-4xl text-dark font-bold">Shop by Category</h2>
           <p className="text-slate-500">Discover premium products tailor-made for your lifestyle.</p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((cat, idx) => {
             const routeCategory = cat.name === 'Audio' ? 'Earphones' : (cat.name === 'Accessories' ? 'Smartwatches' : cat.name);
             return (
-              <Link 
+              <Link
                 to={`/products?category=${routeCategory}`}
                 key={idx}
                 className="group relative h-60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300"
               >
                 <div className="absolute inset-0 bg-dark">
-                  <img 
-                    src={cat.image} 
-                    alt={cat.name} 
+                  <img
+                    src={cat.image}
+                    alt={cat.name}
                     className="w-full h-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-50 transition duration-500"
                   />
                 </div>
@@ -242,11 +242,10 @@ function Home() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative px-5 py-2 rounded-lg text-sm font-bold transition duration-250 ${
-                  activeTab === tab.id 
-                    ? 'bg-white text-dark shadow-sm' 
+                className={`relative px-5 py-2 rounded-lg text-sm font-bold transition duration-250 ${activeTab === tab.id
+                    ? 'bg-white text-dark shadow-sm'
                     : 'text-slate-600 hover:text-slate-900'
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>
@@ -257,7 +256,7 @@ function Home() {
           {products.length === 0 ? (
             <div className="text-center py-20 text-slate-500">Loading products...</div>
           ) : (
-            <motion.div 
+            <motion.div
               layout
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             >
@@ -281,8 +280,8 @@ function Home() {
         </div>
 
         <div className="text-center pt-4">
-          <Link 
-            to="/products" 
+          <Link
+            to="/products"
             className="inline-flex items-center gap-2 font-bold text-primary hover:text-orange-600 transition"
           >
             Explore All Products
@@ -293,7 +292,7 @@ function Home() {
       <div className="relative bg-gradient-to-br from-primary to-orange-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-xl overflow-hidden">
         <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-60 h-60 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
-        
+
         <div className="relative z-10 max-w-2xl mx-auto space-y-6">
           <Mail size={48} className="mx-auto text-orange-100 opacity-90 animate-bounce" />
           <h2 className="text-3xl md:text-4xl font-bold font-heading">Join the Tech Revolution</h2>
@@ -302,30 +301,30 @@ function Home() {
           </p>
           <AnimatePresence mode="wait">
             {!subscribed ? (
-              <motion.form 
+              <motion.form
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                onSubmit={handleSubscribe} 
+                onSubmit={handleSubscribe}
                 className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
               >
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   required
-                  placeholder="Enter your email address" 
+                  placeholder="Enter your email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="flex-grow p-4 rounded-xl text-dark outline-hidden focus:ring-2 focus:ring-orange-300 placeholder:text-slate-400 bg-white"
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="bg-slate-900 text-white font-bold px-6 py-4 rounded-xl hover:bg-slate-800 transition duration-200 shadow-md whitespace-nowrap"
                 >
                   Sign Up Free
                 </button>
               </motion.form>
             ) : (
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 className="bg-white/10 border border-white/20 p-4 rounded-xl text-lg font-bold text-center max-w-sm mx-auto"
