@@ -14,8 +14,7 @@ function ProductDetail() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await api.get('/api/products/${id}');
-        if (!response.ok) throw new Error("Product not found");
+        const response = await api.get(`/api/products/${id}`);
         setProduct(response.data);
         setLoading(false);
       } catch (error) {
