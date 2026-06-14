@@ -16,8 +16,7 @@ function ProductDetail() {
       try {
         const response = await api.get('/api/products/${id}');
         if (!response.ok) throw new Error("Product not found");
-        const data = await response.json();
-        setProduct(data);
+        setProduct(response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching product:", error);
