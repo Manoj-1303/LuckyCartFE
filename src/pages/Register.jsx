@@ -41,7 +41,7 @@ function Register() {
             <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 pointer-events-none">
               <User size={18} />
             </span>
-            <input type="text"  placeholder="Vijay" value={name} onChange={(e) => setName(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-855 placeholder-slate-400 outline-hidden focus:bg-white focus:border-secondary focus:ring-1 focus:ring-secondary/45 transition duration-200" />
+            <input type="text" placeholder="abc" value={name} onChange={(e) => setName(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-sm text-slate-855 placeholder-slate-400 outline-hidden focus:bg-white focus:border-secondary focus:ring-1 focus:ring-secondary/45 transition duration-200" />
           </div>
         </div>
         <div className="space-y-1 text-left">

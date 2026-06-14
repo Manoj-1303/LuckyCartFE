@@ -1,16 +1,58 @@
-# React + Vite
+# LuckyCart - MERN E-Commerce Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LuckyCart is a fully functional e-commerce platform built as a final project for the Full Stack Program. It provides a comprehensive shopping experience, including product browsing, shopping cart management, user authentication, and order processing.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Product Browsing**: View a wide range of electronic gadgets and accessories with detailed product information.
+* **Shopping Cart**: Easily add, update, and remove items from your cart.
+* **User Authentication**: Secure sign-up and login functionality powered by Firebase Authentication.
+* **Order Management**: A seamless checkout flow to place orders for your selected items.
+* **Responsive Design**: Optimized for a clean, user-friendly experience across mobile and desktop devices.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Frontend**: React, Vite, Tailwind CSS, Framer Motion, Axios.
+* **Backend**: Node.js, Express.js.
+* **Database**: MongoDB (Atlas).
+* **Authentication**: Firebase Authentication.
+* **Deployment**: Vercel (Frontend), Render (Backend).
 
-## Expanding the ESLint configuration
+## 📦 Setup Instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+* Node.js (v18+)
+* MongoDB Atlas connection string
+* Firebase project credentials
+
+### Local Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/luckycartfe.git
+
+```
+
+
+2. Navigate to the frontend directory and install dependencies:
+```bash
+cd luckycartfe
+npm install
+
+```
+
+
+3. Create a `.env` file in the root directory and add your environment variables:
+```env
+VITE_API_URL=your_backend_render_url
+
+```
+
+
+4. Start the development server:
+```bash
+npm run dev
+
+```
+
