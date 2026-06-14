@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import firebaseService from '../services/firebase';
 
 const auth = firebaseService.auth;
@@ -18,7 +18,17 @@ const AuthProvider = (props) => {
   }, []);
 
   const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
-  const register = (email, password) => createUserWithEmailAndPassword(auth, email, password);
+  
+  const register = async (email, password, name) => {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    if (name) {
+      await updateProfile(userCredential.user, { displayName: name });
+      await userCredential.user.reload();
+      setCurrentUser(auth.currentUser);
+    }
+    return userCredential;
+  };
+
   const logout = () => signOut(auth);
   const value = { currentUser, login, register, logout };
 
