@@ -27,7 +27,6 @@ function Home() {
     };
     fetchProducts();
   }, []);
-
   const getFilteredProducts = () => {
     switch (activeTab) {
       case 'trending':
@@ -39,7 +38,6 @@ function Home() {
         return products.filter(item => item.featured).slice(0, 4);
     }
   };
-
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (email.trim()) {
@@ -48,14 +46,12 @@ function Home() {
       setTimeout(() => setSubscribed(false), 5000);
     }
   };
-
   const categories = [
     { name: 'Laptops', icon: <Laptop size={32} />, image: laptopImg, count: '4 Items' },
     { name: 'Mobiles', icon: <Smartphone size={32} />, image: mobileImg, count: '4 Items' },
     { name: 'Audio', icon: <Volume2 size={32} />, image: earbudsImg, count: '8 Items' },
     { name: 'Accessories', icon: <Watch size={32} />, image: accessoriesImg, count: '8 Items' },
   ];
-
   const trustBadges = [
     { icon: <Truck className="text-primary" size={28} />, title: 'Free Shipping', desc: 'On all orders above ₹999' },
     { icon: <ShieldCheck className="text-primary" size={28} />, title: '2-Year Warranty', desc: '100% genuine guarantees' },
@@ -257,7 +253,6 @@ function Home() {
             ))}
           </div>
         </div>
-
         <div className="min-h-[350px]">
           {products.length === 0 ? (
             <div className="text-center py-20 text-slate-500">Loading products...</div>
@@ -270,7 +265,7 @@ function Home() {
                 {getFilteredProducts().map(product => (
                   <motion.div
                     layout
-                    key={product._id} // UPDATED: Now uses MongoDB _id
+                    key={product._id}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
@@ -295,7 +290,6 @@ function Home() {
           </Link>
         </div>
       </div>
-
       <div className="relative bg-gradient-to-br from-primary to-orange-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-xl overflow-hidden">
         <div className="absolute top-0 left-0 w-40 h-40 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-60 h-60 bg-white/5 rounded-full translate-x-1/3 translate-y-1/3"></div>
@@ -306,7 +300,6 @@ function Home() {
           <p className="text-orange-100 text-lg">
             Subscribe to our newsletter and get updates on new arrivals, exclusive discounts, and professional tech reviews.
           </p>
-
           <AnimatePresence mode="wait">
             {!subscribed ? (
               <motion.form 
@@ -346,5 +339,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

@@ -8,11 +8,9 @@ function Navbar() {
   const { currentUser, logout } = AuthModule.useAuth();
   const { cart } = CartModule.useCart();
   const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  
   const [isOpen, setIsOpen] = useState(false);
   const [searchVal, setSearchVal] = useState(searchParams.get("search") || "");
 
@@ -21,7 +19,6 @@ function Navbar() {
   }, [searchParams]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchVal.trim()) {

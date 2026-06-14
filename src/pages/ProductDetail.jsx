@@ -24,7 +24,6 @@ function ProductDetail() {
     };
     fetchProduct();
   }, [id]);
-
   const handleAdd = () => {
     if (product) {
       addToCart(product);
@@ -32,11 +31,9 @@ function ProductDetail() {
       setTimeout(() => setIsAdded(false), 2000);
     }
   };
-
   if (loading) {
     return <div className="text-center py-20 text-xl font-bold">Loading product details...</div>;
   }
-
   if (!product) {
     return (
       <div className="text-center py-20">
@@ -48,7 +45,6 @@ function ProductDetail() {
       </div>
     );
   }
-
   return (
     <div className="max-w-5xl mx-auto py-8 px-4">
       <Link 
@@ -58,33 +54,22 @@ function ProductDetail() {
         <ArrowLeft size={18} />
         Back to Shop
       </Link>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-6 md:p-10 rounded-2xl border border-slate-200/80 shadow-lg">
-        
         <div className="rounded-xl overflow-hidden shadow-md border border-slate-100 h-96 flex items-center justify-center bg-slate-50">
-          <img 
-            src={product.image} 
-            alt={product.name} 
-            className="w-full h-full object-cover hover:scale-102 transition duration-500" 
-          />
+          <img src={product.image} alt={product.name} className="w-full h-full object-cover hover:scale-102 transition duration-500" />
         </div>
-        
         <div className="flex flex-col justify-between py-2 text-left">
           <div className="space-y-4">
             <span className="inline-block px-3.5 py-1 text-xs font-extrabold uppercase tracking-widest text-primary bg-primary/10 rounded-full">
               {product.category}
             </span>
-
             <h1 className="text-3xl md:text-4xl font-heading font-extrabold text-slate-900 leading-tight">
               {product.name}
             </h1>
-
             <div className="text-3xl font-black text-slate-900 pt-2">
               ₹{product.price}
             </div>
-
             <hr className="border-slate-100 my-4" />
-
             <div className="space-y-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Description</h3>
               <p className="text-slate-600 text-base leading-relaxed">
@@ -92,7 +77,6 @@ function ProductDetail() {
               </p>
             </div>
           </div>
-
           <div className="pt-8 md:pt-0">
             <button 
               onClick={handleAdd}
@@ -100,19 +84,11 @@ function ProductDetail() {
               className={`w-full md:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold transition duration-200 shadow-md cursor-pointer ${
                 isAdded 
                   ? "bg-secondary text-white shadow-secondary/10" 
-                  : "bg-primary text-white hover:bg-orange-600 shadow-primary/10 hover:-translate-y-0.5"
-              }`}
-            >
+                  : "bg-primary text-white hover:bg-orange-600 shadow-primary/10 hover:-translate-y-0.5"}`}>
               {isAdded ? (
-                <>
-                  <Check size={18} />
-                  Added to Cart!
-                </>
+                <div><Check size={18} />Added to Cart!</div>
               ) : (
-                <>
-                  <ShoppingCart size={18} />
-                  Add to Cart
-                </>
+                <div><ShoppingCart size={18} />Add to Cart</div>
               )}
             </button>
           </div>

@@ -1,22 +1,14 @@
 import { Link } from 'react-router-dom';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  ArrowUp
-} from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
 
 function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
   return (
     <footer className="bg-dark text-slate-300 font-sans border-t border-slate-850 mt-16 relative">
-      <button onClick={scrollToTop}
-        className="absolute right-6 -top-6 bg-primary hover:bg-orange-600 text-white p-3 rounded-full shadow-lg hover:-translate-y-1 transition duration-200 cursor-pointer"
-        title="Scroll to top"
-      >
+      <button onClick={scrollToTop} className="absolute right-6 -top-6 bg-primary hover:bg-orange-600 text-white p-3 rounded-full shadow-lg hover:-translate-y-1 transition duration-200 cursor-pointer"
+        title="Scroll to top">
         <ArrowUp size={20} />
       </button>
 
@@ -66,15 +58,8 @@ function Footer() {
                   href: '#' 
                 }
               ].map((social, i) => (
-                <a 
-                  key={i} 
-                  href={social.href} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="bg-slate-800 text-slate-400 p-2.5 rounded-lg hover:text-white hover:bg-primary transition duration-250"
-                >
-                  {social.icon}
-                </a>
+                <a  key={i} href={social.href} target="_blank" rel="noreferrer" className="bg-slate-800 text-slate-400 p-2.5 rounded-lg hover:text-white hover:bg-primary transition duration-250">
+                  {social.icon} </a>
               ))}
             </div>
           </div>

@@ -9,13 +9,10 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
-
-if (!firebaseConfig.apiKey || firebaseConfig.apiKey.includes("your_api_key_here")) {
-  console.warn("Firebase configuration has placeholder values. Authentication features will not work until valid Firebase credentials are provided in frontend/.env.");
+if (!firebaseConfig.apiKey || firebaseConfig.apiKey.includes("correct")) {
+  console.warn("Firebase authentication is not valid");
 }
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
 export { auth };
 export default { auth };

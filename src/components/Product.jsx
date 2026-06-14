@@ -10,7 +10,6 @@ function Product(props) {
   const handleAdd = () => {
     addToCart(product);
     setIsAdded(true);
-    
     setTimeout(() => {
       setIsAdded(false);
     }, 2000);

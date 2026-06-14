@@ -10,12 +10,10 @@ function Products() {
   const [sortOrder, setSortOrder] = useState("Default");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const qSearch = searchParams.get("search") || "";
     const qCategory = searchParams.get("category") || "All";
-    const qSort = searchParams.get("sort") || "Default";
-    
+    const qSort = searchParams.get("sort") || "Default"; 
     setSearchText(qSearch);
     setSelectedCategory(qCategory);
     setSortOrder(qSort);
@@ -33,7 +31,6 @@ function Products() {
     };
     fetchProducts();
   }, []);
-
   const handleSearchChange = (val) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
@@ -72,25 +69,12 @@ function Products() {
     }
     return 0; 
   });
-
   return (
     <div className="py-6">
-      <h2 className="text-4xl text-dark mb-8 font-bold">All Products</h2>
-      
+      <h2 className="text-4xl text-dark mb-8 font-bold">All Products</h2> 
       <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-8 flex flex-col md:flex-row gap-4">     
-        <input 
-          type="text" 
-          placeholder="Search products..." 
-          value={searchText}
-          onChange={(e) => handleSearchChange(e.target.value)}
-          className="flex-grow p-3 border border-slate-300 rounded-lg focus:outline-none focus:border-primary"
-        />
-
-        <select 
-          value={selectedCategory}
-          onChange={(e) => handleCategoryChange(e.target.value)}
-          className="p-3 border border-slate-300 rounded-lg focus:outline-none focus:border-primary bg-white"
-        >
+        <input type="text" placeholder="Search products..." value={searchText} onChange={(e) => handleSearchChange(e.target.value)} className="flex-grow p-3 border border-slate-300 rounded-lg focus:outline-none focus:border-primary"/>
+        <select value={selectedCategory} onChange={(e) => handleCategoryChange(e.target.value)} className="p-3 border border-slate-300 rounded-lg focus:outline-none focus:border-primary bg-white">
           <option value="All">All Categories</option>
           <option value="Laptops">Laptops</option>
           <option value="Mobiles">Mobiles</option>
@@ -99,12 +83,7 @@ function Products() {
           <option value="Smartwatches">Smartwatches</option>
           <option value="Bluetooth Speakers">Bluetooth Speakers</option>
         </select>
-
-        <select 
-          value={sortOrder}
-          onChange={(e) => handleSortChange(e.target.value)}
-          className="p-3 border border-slate-300 rounded-lg focus:outline-none focus:border-primary bg-white"
-        >
+        <select value={sortOrder} onChange={(e) => handleSortChange(e.target.value)} className="p-3 border border-slate-300 rounded-lg focus:outline-none focus:border-primary bg-white">
           <option value="Default">Sort by: Default</option>
           <option value="LowToHigh">Price: Low to High</option>
           <option value="HighToLow">Price: High to Low</option>

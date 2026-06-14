@@ -9,7 +9,6 @@ function Login() {
   const [error, setError] = useState("");
   const { login } = AuthModule.useAuth();
   const navigate = useNavigate();
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -20,7 +19,6 @@ function Login() {
       setError("Failed to sign in. Please check your details.");
     }
   };
-
   return (
     <div className="max-w-md mx-auto my-12 p-8 bg-white border border-slate-200/80 rounded-2xl shadow-xl space-y-6">
       <div className="flex flex-col items-center text-center space-y-2">
@@ -30,15 +28,12 @@ function Login() {
         <h2 className="text-3xl font-heading font-extrabold text-slate-900">Sign In</h2>
         <p className="text-slate-400 text-sm">Welcome back! Please enter your details.</p>
       </div>
-
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-600 text-sm py-3 px-4 rounded-xl text-center font-medium">
           {error}
         </div>
       )}
-      
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        
         <div className="space-y-1 text-left">
           <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Email Address</label>
           <div className="relative">
@@ -55,7 +50,6 @@ function Login() {
             />
           </div>
         </div>
-
         <div className="space-y-1 text-left">
           <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Password</label>
           <div className="relative">
@@ -72,7 +66,6 @@ function Login() {
             />
           </div>
         </div>
-
         <button 
           type="submit" 
           className="w-full bg-primary hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition duration-200 shadow-md hover:shadow-primary/10 hover:-translate-y-0.5 mt-2 cursor-pointer"
@@ -80,7 +73,6 @@ function Login() {
           Sign In
         </button>
       </form>
-      
       <p className="text-center text-slate-500 text-sm pt-2">
         Don't have an account? <Link to="/register" className="text-primary font-bold hover:underline">Register here</Link>
       </p>
