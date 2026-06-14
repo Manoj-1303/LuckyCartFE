@@ -6,6 +6,7 @@ function Product(props) {
   const { addToCart } = CartModule.useCart();
   const product = props.product;
   const [isAdded, setIsAdded] = useState(false);
+
   const handleAdd = () => {
     addToCart(product);
     setIsAdded(true);
@@ -17,7 +18,7 @@ function Product(props) {
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow border border-slate-100 flex flex-col h-full">
-      <Link to={`/product/${product.id}`} className="block overflow-hidden shrink-0">
+      <Link to={`/product/${product._id}`} className="block overflow-hidden shrink-0">
         <img 
           src={product.image} 
           alt={product.name} 

@@ -34,14 +34,14 @@ function Cart() {
             <div className="flex items-center justify-between sm:justify-end gap-8 w-full sm:w-auto">              
               <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-1 select-none">
                 <button 
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  onClick={() => updateQuantity(item._id, item.quantity - 1)}
                   className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-slate-200/80 text-slate-700 active:scale-95 transition cursor-pointer"
                   title={item.quantity === 1 ? "Remove item" : "Decrease quantity"} >
                   {item.quantity === 1 ? <Trash2 size={15} className="text-red-500" /> : <Minus size={15} />}
                 </button>
                 <span className="font-bold w-6 text-center text-sm text-dark">{item.quantity}</span>
                 <button 
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  onClick={() => updateQuantity(item._id, item.quantity + 1)}
                   className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-slate-200/80 text-slate-700 active:scale-95 transition cursor-pointer"
                   title="Increase quantity"
                 >

@@ -6,10 +6,10 @@ const CartProvider = (props) => {
   const [cart, setCart] = useState([]);
   const addToCart = (product) => {
     setCart((prev) => {
-      const existingItem = prev.find((item) => item.id === product.id);
+      const existingItem = prev.find((item) => item._id === product._id);
       if (existingItem) {
         return prev.map((item) =>
-          item.id === product.id
+          item._id === product._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
@@ -18,7 +18,7 @@ const CartProvider = (props) => {
     });
   };
   const removeFromCart = (productId) => {
-    setCart((prev) => prev.filter((item) => item.id !== productId));
+    setCart((prev) => prev.filter((item) => item._id !== productId));
   };
   const updateQuantity = (productId, newQuantity) => {
     if (newQuantity <= 0) {
@@ -27,7 +27,7 @@ const CartProvider = (props) => {
     }
     setCart((prev) =>
       prev.map((item) =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item
+        item._id === productId ? { ...item, quantity: newQuantity } : item
       )
     );
   };
