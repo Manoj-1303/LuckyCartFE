@@ -1,15 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ShoppingCart, Check } from 'lucide-react';
-import { inventory } from '../data/inventory';
 import CartModule from '../context/CartContext';
 
 function ProductDetail() {
   const { id } = useParams();
   const { addToCart } = CartModule.useCart();
   const [isAdded, setIsAdded] = useState(false);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const product = inventory.find((p) => p.id === parseInt(id));
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`http://localhost:5001/api/products/${id}`);
+        if (!response.ok) throw new Error("Product not found");
+        const data = await response.json();
+        setProduct(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [id]);
 
   const handleAdd = () => {
     if (product) {
@@ -18,6 +33,10 @@ function ProductDetail() {
       setTimeout(() => setIsAdded(false), 2000);
     }
   };
+
+  if (loading) {
+    return <div className="text-center py-20 text-xl font-bold">Loading product details...</div>;
+  }
 
   if (!product) {
     return (
@@ -50,8 +69,8 @@ function ProductDetail() {
             className="w-full h-full object-cover hover:scale-102 transition duration-500" 
           />
         </div>
+        
         <div className="flex flex-col justify-between py-2 text-left">
-          
           <div className="space-y-4">
             <span className="inline-block px-3.5 py-1 text-xs font-extrabold uppercase tracking-widest text-primary bg-primary/10 rounded-full">
               {product.category}
@@ -70,7 +89,7 @@ function ProductDetail() {
             <div className="space-y-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Description</h3>
               <p className="text-slate-600 text-base leading-relaxed">
-                {product.description} Upgrade your experience with the high-performance {product.name}, designed specifically to offer premium usability and unmatched performance for everyday tech enthusiasts.
+                {product.description}
               </p>
             </div>
           </div>
@@ -98,9 +117,7 @@ function ProductDetail() {
               )}
             </button>
           </div>
-
         </div>
-
       </div>
     </div>
   );

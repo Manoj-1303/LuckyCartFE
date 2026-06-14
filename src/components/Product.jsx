@@ -6,7 +6,6 @@ function Product(props) {
   const { addToCart } = CartModule.useCart();
   const product = props.product;
   const [isAdded, setIsAdded] = useState(false);
-
   const handleAdd = () => {
     addToCart(product);
     setIsAdded(true);
@@ -27,7 +26,7 @@ function Product(props) {
       </Link>
 
       <div className="p-5 flex flex-col flex-grow">
-        <Link to={`/product/${product.id}`} className="hover:text-primary transition-colors">
+        <Link to={`/product/${product._id}`} className="hover:text-primary transition-colors">
           <h3 className="text-xl text-dark font-bold line-clamp-1">{product.name}</h3>
         </Link>
         

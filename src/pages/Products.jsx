@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Product from '../components/Product';
-import { inventory } from '../data/inventory';
 
 function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortOrder, setSortOrder] = useState("Default");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const qSearch = searchParams.get("search") || "";
@@ -18,6 +19,20 @@ function Products() {
     setSelectedCategory(qCategory);
     setSortOrder(qSort);
   }, [searchParams]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/products');
+        const data = await response.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const handleSearchChange = (val) => {
     setSearchParams((prev) => {
@@ -27,7 +42,6 @@ function Products() {
       return next;
     });
   };
-
   const handleCategoryChange = (val) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
@@ -36,7 +50,6 @@ function Products() {
       return next;
     });
   };
-
   const handleSortChange = (val) => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
@@ -45,13 +58,11 @@ function Products() {
       return next;
     });
   };
-
-  const filteredItems = inventory.filter((item) => {
+  const filteredItems = products.filter((item) => {
     const matchesSearch = item.name.toLowerCase().includes(searchText.toLowerCase());
     const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-
   const sortedAndFilteredItems = filteredItems.sort((a, b) => {
     if (sortOrder === "LowToHigh") {
       return a.price - b.price;
@@ -66,8 +77,7 @@ function Products() {
     <div className="py-6">
       <h2 className="text-4xl text-dark mb-8 font-bold">All Products</h2>
       
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-8 flex flex-col md:flex-row gap-4">
-        
+      <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-8 flex flex-col md:flex-row gap-4">     
         <input 
           type="text" 
           placeholder="Search products..." 
@@ -101,10 +111,12 @@ function Products() {
         </select>
       </div>
 
-      {sortedAndFilteredItems.length > 0 ? (
+      {loading ? (
+        <div className="text-center py-20 text-slate-500 text-xl">Loading products...</div>
+      ) : sortedAndFilteredItems.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {sortedAndFilteredItems.map(item => (
-            <Product key={item.id} product={item} />
+            <Product key={item._id} product={item} />
           ))}
         </div>
       ) : (

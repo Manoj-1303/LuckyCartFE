@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ShoppingBag, Truck, ShieldCheck, Headphones, RotateCcw, Laptop, Smartphone, Volume2, Watch, Mail, Sparkles,Star } from 'lucide-react';
-import { inventory } from '../data/inventory';
+import { ArrowRight, ShoppingBag, Truck, ShieldCheck, Headphones, RotateCcw, Laptop, Smartphone, Volume2, Watch, Mail, Sparkles, Star } from 'lucide-react';
 import Product from '../components/Product';
 import sony from '../assets/sony.webp';
 import laptopImg from '../assets/laptop.webp';
@@ -14,16 +13,30 @@ function Home() {
   const [activeTab, setActiveTab] = useState('featured');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/products');
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const getFilteredProducts = () => {
     switch (activeTab) {
       case 'trending':
-        return inventory.filter(item => item.trending).slice(0, 4);
+        return products.filter(item => item.trending).slice(0, 4);
       case 'new':
-        return inventory.filter(item => item.newArrival).slice(0, 4);
+        return products.filter(item => item.newArrival).slice(0, 4);
       case 'featured':
       default:
-        return inventory.filter(item => item.featured).slice(0, 4);
+        return products.filter(item => item.featured).slice(0, 4);
     }
   };
 
@@ -246,26 +259,30 @@ function Home() {
         </div>
 
         <div className="min-h-[350px]">
-          <motion.div 
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            <AnimatePresence mode="popLayout">
-              {getFilteredProducts().map(product => (
-                <motion.div
-                  layout
-                  key={product.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className="h-full"
-                >
-                  <Product product={product} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+          {products.length === 0 ? (
+            <div className="text-center py-20 text-slate-500">Loading products...</div>
+          ) : (
+            <motion.div 
+              layout
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
+              <AnimatePresence mode="popLayout">
+                {getFilteredProducts().map(product => (
+                  <motion.div
+                    layout
+                    key={product._id} // UPDATED: Now uses MongoDB _id
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                    className="h-full"
+                  >
+                    <Product product={product} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          )}
         </div>
 
         <div className="text-center pt-4">
