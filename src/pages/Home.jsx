@@ -8,6 +8,7 @@ import laptopImg from '../assets/laptop.webp';
 import mobileImg from '../assets/mobile.avif';
 import earbudsImg from '../assets/earbuds.avif';
 import accessoriesImg from '../assets/accessories.jpg';
+import api from '../services/api';
 
 function Home() {
   const [activeTab, setActiveTab] = useState('featured');
@@ -18,7 +19,7 @@ function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/products');
+        const response = await api.get('/api/products');
         const data = await response.json();
         setProducts(data);
       } catch (error) {

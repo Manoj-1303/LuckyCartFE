@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ShoppingCart, Check } from 'lucide-react';
 import CartModule from '../context/CartContext';
+import api from '../services/api';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -13,7 +14,7 @@ function ProductDetail() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/products/${id}`);
+        const response = await api.get('/api/products/${id}');
         if (!response.ok) throw new Error("Product not found");
         const data = await response.json();
         setProduct(data);

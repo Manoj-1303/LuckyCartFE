@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Product from '../components/Product';
+import api from '../services/api';
 
 function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,7 +23,7 @@ function Products() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/products');
+        const response = await api.get('/api/products');
         const data = await response.json();
         setProducts(data);
         setLoading(false);
